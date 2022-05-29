@@ -1,0 +1,16 @@
+<ul *ngIf="todosService.todos.length; else noTodos">
+    <li *ngFor="let todo of todosService.todos; let i = index">
+        <span [class.done]="todo.completed">
+            <input type="checkbox" [checked]="todo.completed" (change)="onChange(todo.id)">
+            <strong>{{i + 1}}</strong> {{todo.title}}
+        </span>
+
+        <small>{{todo.date | date:'medium'}}</small>
+
+        <button class="rm" (click)="removeTodo(todo.id)">&times;</button>
+    </li>
+</ul>
+
+<ng-template #noTodos>
+    <p style="text-align: center">Незавершенные задачи отсутсвуют</p>
+</ng-template>
